@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nike/theme.dart';
+import 'package:nike/ui/home/home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,62 +33,9 @@ class MyApp extends StatelessWidget {
       ),
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: const MyHomePage(title: 'فروشگاه نایک'),
+        child: const HomeScreen(),
       ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-
-        title: Text(
-          widget.title,
-          style: Theme.of(context).textTheme.headlineSmall,
-        ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: .center,
-          children: [
-            Text(
-              'هر کلیک یک جایزه برای توست!',
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            Text(
-              'هر کلیک یک جایزه برای توست!',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            Text('$_counter', style: Theme.of(context).textTheme.bodyMedium),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
-    );
-  }
-}
