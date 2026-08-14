@@ -38,6 +38,8 @@ dependencies:
   flutter_bloc: ^9.1.1
   equatable: ^2.1.0
   bloc: ^9.2.1
+  cached_network_image: ^3.4.1
+  smooth_page_indicator: ^2.0.1
 
 dev_dependencies:
   flutter_test:
