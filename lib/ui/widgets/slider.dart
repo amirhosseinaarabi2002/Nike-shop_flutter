@@ -62,7 +62,6 @@ class BannerSlider extends StatelessWidget {
 class _Slide extends StatelessWidget {
   final int index;
   const _Slide({
-    super.key,
     required this.borderRadius,
     required this.banners,
     required this.index,

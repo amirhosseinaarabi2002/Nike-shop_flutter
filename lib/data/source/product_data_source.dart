@@ -33,6 +33,4 @@ class ProductRemoteDataSource with HttpResponseValidator implements IProductData
     }
     return products;
   }
-
- 
 }

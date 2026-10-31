@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nike/common/utils.dart';
+import 'package:nike/data/product.dart';
 import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/data/repo/product_repository.dart';
 import 'package:nike/ui/home/bloc/home_bloc.dart';
+import 'package:nike/ui/product/product.dart';
+import 'package:nike/ui/widgets/image.dart';
 import 'package:nike/ui/widgets/slider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -46,6 +50,20 @@ class HomeScreen extends StatelessWidget {
                           banners: banners,
                           borderRadius: BorderRadius.circular(12),
                         );
+
+                      case 3:
+                        return _HorizontalProductList(
+                          title: 'جدیدترین',
+                          onTap: () {},
+                          products: state.latestProducts,
+                        );
+
+                      case 4:
+                        return _HorizontalProductList(
+                          title: 'پرفروش ترین',
+                          onTap: () {},
+                          products: state.popularProducts,
+                        );
                       default:
                         return Container();
                     }
@@ -76,6 +94,52 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _HorizontalProductList extends StatelessWidget {
+  final String title;
+  final GestureTapCallback onTap;
+  final List<ProductEntity> products;
+  const _HorizontalProductList({
+    required this.title,
+    required this.onTap,
+    required this.products,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 12, right: 12),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(title, style: Theme.of(context).textTheme.titleSmall),
+              TextButton(onPressed: onTap, child: Text("مشاهده همه")),
+            ],
+          ),
+        ),
+
+        SizedBox(
+          height: 290,
+          child: ListView.builder(
+            physics: defaultScrollPhysics,
+            itemCount: products.length,
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(left: 8, right: 8),
+            itemBuilder: ((context, index) {
+              final product = products[index];
+              return ProductItem(
+                product: product,
+                borderRadius: BorderRadius.circular(12),
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }

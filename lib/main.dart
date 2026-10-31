@@ -19,6 +19,9 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         textTheme: TextTheme(
+          titleSmall: defaultTextStyle.apply(
+            color: LightThemeColors.secondryTextColor,
+          ),
           headlineSmall: defaultTextStyle.copyWith(fontWeight: FontWeight.bold),
           bodySmall: defaultTextStyle.copyWith(
             color: LightThemeColors.secondryTextColor,
@@ -30,6 +33,9 @@ class MyApp extends StatelessWidget {
           secondary: LightThemeColors.secondryColor,
           onSecondary: Colors.white,
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(textStyle: defaultTextStyle),
+        ),
       ),
       home: Directionality(
         textDirection: TextDirection.rtl,
@@ -38,4 +44,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
