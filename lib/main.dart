@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nike/theme.dart';
+import 'package:nike/ui/auth/auth.dart';
 import 'package:nike/ui/home/home.dart';
+import 'package:nike/ui/root.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,7 +24,10 @@ class MyApp extends StatelessWidget {
           titleSmall: defaultTextStyle.apply(
             color: LightThemeColors.secondryTextColor,
           ),
-          headlineSmall: defaultTextStyle.copyWith(fontWeight: FontWeight.bold),
+          headlineSmall: defaultTextStyle.copyWith(
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
           bodySmall: defaultTextStyle.copyWith(
             color: LightThemeColors.secondryTextColor,
           ),
@@ -39,7 +44,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Directionality(
         textDirection: TextDirection.rtl,
-        child: const HomeScreen(),
+        child: const AuthScreen(),
       ),
     );
   }

@@ -18,7 +18,7 @@ class ProductItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         onTap: () => Navigator.of(
           context,
-        ).push(MaterialPageRoute(builder: (context) => ProductDetailScreen())),
+        ).push(MaterialPageRoute(builder: (context) => ProductDetailScreen(product: product,))),
         child: SizedBox(
           width: 176,
           child: Column(

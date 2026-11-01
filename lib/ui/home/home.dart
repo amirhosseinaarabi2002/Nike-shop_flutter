@@ -6,7 +6,7 @@ import 'package:nike/data/repo/banner_repository.dart';
 import 'package:nike/data/repo/product_repository.dart';
 import 'package:nike/ui/home/bloc/home_bloc.dart';
 import 'package:nike/ui/product/product.dart';
-import 'package:nike/ui/widgets/image.dart';
+import 'package:nike/ui/widgets/error.dart';
 import 'package:nike/ui/widgets/slider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,6 +32,7 @@ class HomeScreen extends StatelessWidget {
             builder: (context, state) {
               if (state is HomeSuccess) {
                 return ListView.builder(
+                  physics: defaultScrollPhysics,
                   itemCount: 5,
                   itemBuilder: (context, index) {
                     switch (index) {
@@ -72,21 +73,9 @@ class HomeScreen extends StatelessWidget {
               } else if (state is HomeLoading) {
                 return Center(child: CircularProgressIndicator());
               } else if (state is HomeError) {
-                return Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(state.exception.message),
-                      ElevatedButton(
-                        onPressed: () {
-                          BlocProvider.of<HomeBloc>(context).add(HomeRefresh());
-                        },
-                        child: Text("تلاش مجدد"),
-                      ),
-                    ],
-                  ),
-                );
+                return AppErrorWidget(exception: state.exception, onPressed: () {
+                  BlocProvider.of<HomeBloc>(context).add(HomeRefresh());
+                 },);
               } else {
                 throw Exception('state is not supported!');
               }
@@ -97,6 +86,8 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+
 
 class _HorizontalProductList extends StatelessWidget {
   final String title;
